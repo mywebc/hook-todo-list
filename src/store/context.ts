@@ -7,4 +7,4 @@ interface IContext {
     dispatch: React.Dispatch<IReducerAction>;
 }
 
-export default React.createContext<IContext>({state: initialState, dispatch: () => {} })
+export default React.createContext<IContext>({state: initialState, dispatch: ():void => {} })

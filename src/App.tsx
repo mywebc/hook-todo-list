@@ -7,14 +7,18 @@ import List from './components/ListItem/List';
 
 const App: React.FC = () => {
 
-  const [state , dispatch] = useReducer(toDoListReducer, initialState)
+  const [state, dispatch] = useReducer(toDoListReducer, initialState)
   return (
-    <div className="App">
+    <>
       <myContext.Provider value={{ state, dispatch }}>
-        <InputItem />
-        <List list={state.list}/> 
+        <div className="inputWrapper">
+          <InputItem />
+        </div>
+        <div className="list">
+          <List list={state.list} />
+        </div>
       </myContext.Provider>
-    </div>
+    </>
   );
 }
 

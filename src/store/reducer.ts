@@ -1,4 +1,4 @@
-import { ENTRY_VAL,LIST_DATA } from './action'
+import { ENTRY_VAL,LIST_DATA ,DELETE_ITEM} from './action'
 
 export interface IReducerState {
   currentVal: string;
@@ -7,7 +7,7 @@ export interface IReducerState {
 
 export interface IReducerAction {
   type: string;
-  value: any;
+  value?: any;
 }
 
 
@@ -21,10 +21,16 @@ export const toDoListReducer = (state: IReducerState, action: IReducerAction):IR
   switch (action.type) {
     case ENTRY_VAL:
       return { ...state, currentVal: action.value }
+
     case LIST_DATA:
       const listCopy = state.list
       listCopy.push(action.value)
       return { ...state, list: listCopy }
+
+    case DELETE_ITEM:
+      state.list.splice(action.value,1)
+      return {...state}
+
     default:
       return state
   }

@@ -7,7 +7,52 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.inputWrapper {
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  margin-top: 40px;
+}
+
+.inputText {
+  width: 100%;
+  display: flex;
+  line-height: 40px;
+  justify-items: center;
+  align-items: center;
+}
+.inputText input {
+  flex: 1;
+  height: 20px;
+}
+.inputText a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+
+.list {
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.list .listItem input[type="checkbox"]{
+  margin-top: 6px;
+}
+.list .listItem {
+  width: 100%;
+  display: flex;
+} 
+
+.list .listItem .item {
+  flex: 1;
+}
+
+.list .listItem .delete {
+  cursor: pointer;
 }

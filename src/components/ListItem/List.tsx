@@ -10,7 +10,7 @@ const List: React.FC<IListProps> = (props) => {
 
     return (
         <>
-            {props.list.map(ele => (<ListItem item={ele} />))}
+            {props.list.map((ele, index) => (<ListItem item={ele} itemId={index} />))}
         </>
     )
 }
