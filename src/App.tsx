@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useReducer, useContext } from 'react';
+import InputItem from './components/InputItem/InputItem'
+import myContext from './store/context'
+import { initialState, toDoListReducer } from './store/reducer'
+import List from './components/ListItem/List';
+
 
 const App: React.FC = () => {
+
+  const [state , dispatch] = useReducer(toDoListReducer, initialState)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <myContext.Provider value={{ state, dispatch }}>
+        <InputItem />
+        <List list={state.list}/> 
+      </myContext.Provider>
     </div>
   );
 }
