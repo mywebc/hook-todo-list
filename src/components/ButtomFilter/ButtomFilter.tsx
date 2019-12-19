@@ -1,13 +1,15 @@
-import React from 'react'
+import React from "react";
 
 const ButtomFilter = () => {
-    return (
-        <div className="buttomFilter">
-            <span>全部</span>
-            <span>已完成</span>
-            <span>未完成</span>
-        </div>
-    )
-}
+  const changeState = (flag: string) => {};
 
-export default ButtomFilter
+  return (
+    <div className="buttomFilter">
+      <span onClick={() => changeState("all")}>全部</span>
+      <span onClick={() => changeState("done")}>已完成</span>
+      <span onClick={() => changeState("not")}>未完成</span>
+    </div>
+  );
+};
+
+export default ButtomFilter;

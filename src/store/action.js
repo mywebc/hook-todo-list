@@ -1,15 +1,14 @@
-/**输入框输入的值 */
-const ENTRY_VAL = "entryVal";
-
 /**列表数据 */
 const LIST_DATA = 'listData';
 
 /**删除 */
 const DELETE_ITEM= 'deleteItem';
 
+/**改变选中状态 */
+const CHANGE_CHECK = "changeCheck"
 
 export {
-    ENTRY_VAL,
     LIST_DATA,
-    DELETE_ITEM
+    DELETE_ITEM,
+    CHANGE_CHECK
 }
