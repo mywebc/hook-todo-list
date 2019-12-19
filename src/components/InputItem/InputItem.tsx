@@ -19,7 +19,7 @@ const InputItem: React.FC = () => {
 
     const fetchVal = (): void => {
         const inputVal = (inputRef.current as HTMLInputElement).value;
-        dispatch({ type: LIST_DATA, value: inputVal });
+        dispatch({ type: LIST_DATA, value: { value: inputVal, id: Date.now() } });
         (inputRef.current as HTMLInputElement).value = ""
     }
 

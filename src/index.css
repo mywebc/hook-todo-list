@@ -22,10 +22,12 @@ body {
   justify-items: center;
   align-items: center;
 }
+
 .inputText input {
   flex: 1;
   height: 20px;
 }
+
 .inputText a {
   display: inline-block;
   width: 40px;
@@ -41,18 +43,32 @@ body {
   display: flex;
   flex-direction: column;
 }
-.list .listItem input[type="checkbox"]{
+
+.list .listItem input[type="checkbox"] {
   margin-top: 6px;
 }
+
 .list .listItem {
   width: 100%;
   display: flex;
-} 
+}
 
 .list .listItem .item {
   flex: 1;
 }
 
 .list .listItem .delete {
+  cursor: pointer;
+}
+
+.buttomFilter {
+  width: 100%;
+  border: 1px solid #eee;
+}
+
+.buttomFilter span {
+  display: inline-block;
+  width: 60px;
+  text-align: center;
   cursor: pointer;
 }

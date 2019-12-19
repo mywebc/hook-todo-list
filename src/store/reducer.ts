@@ -2,7 +2,7 @@ import { ENTRY_VAL,LIST_DATA ,DELETE_ITEM} from './action'
 
 export interface IReducerState {
   currentVal: string;
-  list: string[];
+  list: {value: string, id: number}[];
 }
 
 export interface IReducerAction {
@@ -28,7 +28,8 @@ export const toDoListReducer = (state: IReducerState, action: IReducerAction):IR
       return { ...state, list: listCopy }
 
     case DELETE_ITEM:
-      state.list.splice(action.value,1)
+      const deleteId = state.list.findIndex(ele => ele.id === action.value)
+      state.list.splice(deleteId,1)
       return {...state}
 
     default:
