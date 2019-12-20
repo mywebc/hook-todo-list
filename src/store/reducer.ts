@@ -1,40 +1,47 @@
-import { LIST_DATA, DELETE_ITEM, CHANGE_CHECK } from './action'
+import { LIST_DATA, DELETE_ITEM, CHANGE_CHECK, FILTER_LIST } from './action'
 
 export interface IReducerState {
-  currentVal: string;
-  list: { value: string, id: number, isCheck: boolean }[];
+  list: { data: string, id: number, isCheck: boolean }[];
 }
 
 export interface IReducerAction {
   type: string;
-  value?: any;
-  isCheck: boolean;
+  value: { data: string; id: number; isCheck: boolean };
 }
 
-
-
 export const initialState: IReducerState = {
-  currentVal: "",
   list: []
 }
 
 export const toDoListReducer = (state: IReducerState, action: IReducerAction): IReducerState => {
   switch (action.type) {
     case LIST_DATA:
-      const listCopy = state.list
-      listCopy.push(action.value)
-      return { ...state, list: listCopy }
+      state.list.push(action.value)
+      return { ...state }
 
     case DELETE_ITEM:
-      const deleteId = state.list.findIndex(ele => ele.id === action.value)
+      const deleteId = state.list.findIndex(ele => ele.id === action.value.id)
       state.list.splice(deleteId, 1)
       return { ...state }
 
     case CHANGE_CHECK:
       state.list.forEach(ele => {
-        ele.isCheck = ele.id === action.value ? action.isCheck : !action.isCheck
+        if (ele.id === action.value.id) {
+          ele.isCheck = action.value.isCheck
+        }
       })
       return { ...state }
+
+    // case FILTER_LIST:
+    //   return (function (): IReducerState {
+    //     if (action.value.data === 'done') {
+    //       return { ...state, list: state.list.filter(ele => ele.isCheck === true) }
+    //     } else if (action.value.data === 'not') {
+    //       return { ...state, list: state.list.filter(ele => ele.isCheck === false) }
+    //     } else {
+    //       return { ...state }
+    //     }
+    //   })()
 
     default:
       return state

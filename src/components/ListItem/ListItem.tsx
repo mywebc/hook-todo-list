@@ -4,23 +4,23 @@ import { DELETE_ITEM, CHANGE_CHECK } from "../../store/action";
 
 interface IListItemProps {
   /**每一条数据 */
-  item: { value: string; id: number };
+  item: { data: string; id: number; isCheck: boolean };
 }
 
 const ListItem: React.FC<IListItemProps> = props => {
-  const [isCheck, setCheck] = useState<boolean>(false);
-
+  const [isCheck, setCheck] = useState<boolean>(props.item.isCheck);
   const { dispatch } = useContext(myContext);
 
   const clickCheckbox = () => {
+    dispatch({ type: CHANGE_CHECK, value: { data: "", id: props.item.id, isCheck: !isCheck } });
     setCheck(!isCheck);
-    dispatch({ type: CHANGE_CHECK, value: props.item.id, isCheck });
   };
 
   const deleteItem = () => {
-    dispatch({ type: DELETE_ITEM, value: props.item.id, isCheck });
+    dispatch({ type: DELETE_ITEM, value: { data: "", id: props.item.id, isCheck } });
   };
-  useEffect(() => {}, [props.item.id]);
+
+
   return (
     <div className="listItem">
       <input type="checkbox" onChange={clickCheckbox} checked={isCheck} />
@@ -28,7 +28,7 @@ const ListItem: React.FC<IListItemProps> = props => {
         className="item"
         style={isCheck ? { textDecoration: "line-through" } : {}}
       >
-        {props.item.value}
+        {props.item.data}
       </div>
       <div className="delete" onClick={deleteItem}>
         X

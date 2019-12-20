@@ -1,17 +1,37 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ListItem from './ListItem'
 import ButtomFilter from '../ButtomFilter/ButtomFilter'
-interface IListProps {
-    /**所有数据 */
-    list: { value: string; id: number }[];
-}
+import myContext from "../../store/context";
 
-const List: React.FC<IListProps> = (props) => {
+
+type listFormat = { data: string; id: number; isCheck: boolean }[];
+
+const List: React.FC = () => {
+    const { state } = useContext(myContext)
+    const [listTemp, setListTemp] = useState<listFormat>(state.list)
+
+    const changeStorage = (flag: string) => {
+        console.log("list", state.list)
+        const listCopy = (function () {
+            if (flag === 'done') {
+                return state.list.filter(ele => ele.isCheck === true)
+            } else if (flag === 'not') {
+                return state.list.filter(ele => ele.isCheck === false)
+            } else {
+                return state.list
+            }
+        })()
+        setListTemp(listCopy)
+    }
+
+    useEffect(() => {
+        setListTemp(state.list)
+    }, [state])
 
     return (
         <>
-            {props.list.map(ele => (<ListItem item={ele} key={ele.id} />))}
-            <ButtomFilter/>
+            {listTemp.map(ele => (<ListItem item={ele} key={ele.id} />))}
+            <ButtomFilter changeStorage={changeStorage} />
         </>
     )
 }

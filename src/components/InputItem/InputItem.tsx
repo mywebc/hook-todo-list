@@ -6,22 +6,21 @@ const InputItem: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { dispatch } = useContext(myContext);
 
-  const clickInputVal = (): void => {
+  const clickInputVal = () => {
     fetchVal();
   };
 
-  const entryInputValue = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+  const entryInputValue = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === 13) {
       fetchVal();
     }
   };
 
-  const fetchVal = (): void => {
+  const fetchVal = () => {
     const inputVal = (inputRef.current as HTMLInputElement).value;
     dispatch({
       type: LIST_DATA,
-      value: { value: inputVal, id: Date.now() },
-      isCheck: false
+      value: { data: inputVal, id: Date.now(), isCheck: false },
     });
     (inputRef.current as HTMLInputElement).value = "";
   };
