@@ -18,6 +18,7 @@ const InputItem: React.FC = () => {
 
   const fetchVal = () => {
     const inputVal = (inputRef.current as HTMLInputElement).value;
+    if(inputVal === "") return
     dispatch({
       type: LIST_DATA,
       value: { data: inputVal, id: Date.now(), isCheck: false },
