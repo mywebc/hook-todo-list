@@ -16,7 +16,7 @@ export const initialState: IReducerState = {
 export const toDoListReducer = (state: IReducerState, action: IReducerAction): IReducerState => {
   switch (action.type) {
     case LIST_DATA:
-      state.list.push(action.value)
+      state.list.unshift(action.value)
       return { ...state }
 
     case DELETE_ITEM:
